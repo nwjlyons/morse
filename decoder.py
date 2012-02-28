@@ -1,3 +1,7 @@
+#! /usr/bin/env python
+
+import clint
+
 morse_code_dict = {
     "1 111": "A",
     "111 1 1 1": "B",
@@ -38,9 +42,8 @@ morse_code_dict = {
     "111 111 111 111 111": "0",
 }
 
-while True:
-    f = open("my_pipe", "r")
-    data = f.read()
+
+def decode(data):
     words = data.rstrip('\n').split("       ")
     output = ""
     for word in words:
@@ -49,4 +52,19 @@ while True:
             output += morse_code_dict.get(letter, " ")
         output += " "
     print output
-    f.close()
+
+
+clint_args = clint.args.get(0)
+clint_piped = clint.piped_in()
+
+
+if clint_args:
+    decode(clint_args)
+elif clint_piped:
+    decode(clint_piped)
+else:
+    while True:
+        f = open("my_pipe", "r")
+        data = f.read()
+        decode(data)
+        f.close()
