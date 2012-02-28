@@ -13,10 +13,10 @@ def sound_it(data):
     for char in data:
         if char == "1":
             print "1"
-            envoy.run("play -v500 button-toggle-off.ogg")
+            envoy.run("play -v5 button-toggle-off.wav")
         else:
             print " "
-            envoy.run("play -v10 button-toggle-off.ogg")
+            envoy.run("play -v1 button-toggle-off.wav")
 
 
 if clint_args:

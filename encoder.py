@@ -50,4 +50,4 @@ for letter in clint.args.get(0):
     else:
         output += morse_code_dict.get(letter.upper())
         output += "   "
-print output
+print output.strip()
