@@ -12,14 +12,11 @@ def sound_it(data):
     data = data.strip()
     for char in data:
         if char == "1":
-            # print "\a1"
             print "1"
             envoy.run("play -v500 button-toggle-off.ogg")
-            # time.sleep(.2)
         else:
             print " "
             envoy.run("play -v10 button-toggle-off.ogg")
-            # time.sleep(.3)
 
 
 if clint_args:
