@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import clint
+from clint.textui import puts, indent
 
 morse_code_dict = {
     "A": "1 111",
@@ -43,11 +44,38 @@ morse_code_dict = {
 }
 
 
-output = ""
-for letter in clint.args.get(0):
-    if letter == " ":
-        output += "    "
-    else:
-        output += morse_code_dict.get(letter.upper())
-        output += "   "
-print output.strip()
+clint_args = clint.args.get(0)
+clint_piped = clint.piped_in()
+
+
+def encode(data):
+    output = ""
+    for letter in data.strip():
+        if letter == " ":
+            output += "    "
+        else:
+            output += morse_code_dict.get(letter.upper())
+            output += "   "
+    print output.strip()
+
+if clint_args:
+    encode(clint_args)
+elif clint_piped:
+    encode(clint_piped)
+else:
+    help = """
+    Encode an ASCII string into a morse code string.
+
+    Examples:
+        ./encoder.py Hi
+            ASCII string as first argument.
+
+        ./encoder.py "Hello World"
+            Use quotes to encode more than one word.
+
+        echo "Hi" | ./encoder.py
+            ASCII string can be piped in.
+
+        python encoder.py Hi
+    """
+    puts(help)
