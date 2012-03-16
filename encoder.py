@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 import clint
-from clint.textui import puts, indent
+from clint.textui import puts
 
 morse_code_dict = {
     "A": "1 111",
@@ -64,18 +64,20 @@ elif clint_piped:
     encode(clint_piped)
 else:
     help = """
-    Encode an ASCII string into a morse code string.
+    Encode an alphanumeric string [A-Z0-9] into a morse code string.
 
     Examples:
+
+        Alphanumeric string as first argument.
         ./encoder.py Hi
-            ASCII string as first argument.
+        > 1 1 1 1   1 1
 
-        ./encoder.py "Hello World"
-            Use quotes to encode more than one word.
-
+        Alphanumeric string can be piped in.
         echo "Hi" | ./encoder.py
-            ASCII string can be piped in.
+        > 1 1 1 1   1 1
 
-        python encoder.py Hi
+        Use quotes to encode more than one word.
+        ./encoder.py "Hello World"
+        1 1 1 1   1   1 111 1 1   1 111 1 1   111 111 111       1 111 111   111 111 111   1 111 1   1 111 1 1   111 1 1
     """
     puts(help)

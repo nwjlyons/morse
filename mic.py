@@ -3,6 +3,7 @@
 import alsaaudio
 import audioop
 import clint
+import envoy
 import signal
 import sys
 
@@ -20,6 +21,7 @@ output = ""
 
 
 def signal_handler(signal, frame):
+    envoy.run("notify-send '%s'" % output)
     f = open("my_pipe", "w")
     f.write(output)
     f.close()
